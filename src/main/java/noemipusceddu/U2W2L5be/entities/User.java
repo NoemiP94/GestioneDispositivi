@@ -1,5 +1,6 @@
 package noemipusceddu.U2W2L5be.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,7 @@ public class User {
     private String username;
     private String email;
     private String avatar;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Device> devicesList;
 }

@@ -14,6 +14,7 @@ public class ExceptHandler {
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND) // --> 404
     public ExceptionsDTO notFoundHandle(NotFoundException e){
+        e.printStackTrace();
         return new ExceptionsDTO(e.getMessage(), LocalDateTime.now());
     }
 
