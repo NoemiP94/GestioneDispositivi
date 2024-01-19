@@ -1,5 +1,7 @@
 package noemipusceddu.U2W2L5be.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import noemipusceddu.U2W2L5be.entities.User;
 import noemipusceddu.U2W2L5be.exceptions.BadRequestException;
 import noemipusceddu.U2W2L5be.exceptions.NotFoundException;
@@ -11,7 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -19,6 +23,9 @@ public class UserService {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private Cloudinary imagesUploader;
 
     public User save(UserDTO body){
 
@@ -58,5 +65,10 @@ public class UserService {
     public void findByIdAndDelete(UUID id){
         User found = this.findById(id);
         userDAO.delete(found);
+    }
+
+    public String uploadImage(MultipartFile file) throws IOException {
+        String url = (String) imagesUploader.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+        return url;
     }
 }

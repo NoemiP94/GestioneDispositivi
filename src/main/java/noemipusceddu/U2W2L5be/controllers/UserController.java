@@ -11,7 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -52,5 +55,10 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void findUserAndDelete(@PathVariable UUID id){
         userService.findByIdAndDelete(id);
+    }
+
+    @PostMapping("/{id}/upload")
+    public String uploadAvatar(@RequestParam("avatar") MultipartFile file, @PathVariable UUID id) throws IOException {
+        return userService.uploadImage(file);
     }
 }
