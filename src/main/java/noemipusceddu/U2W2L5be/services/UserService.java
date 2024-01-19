@@ -31,6 +31,7 @@ public class UserService {
        user.setSurname(body.surname());
        user.setUsername(body.username());
        user.setEmail(body.email());
+       user.setAvatar("https://ui-avatars.com/api/?name=" + body.name() + "+" + body.surname());
        return userDAO.save(user);
     }
 

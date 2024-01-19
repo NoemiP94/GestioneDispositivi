@@ -26,6 +26,7 @@ public class ExceptHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // --> 500
     public ExceptionsDTO genericExHandle(Exception e){
+        e.printStackTrace();
         return new ExceptionsDTO("Errore nel server! Contattare il backend!", LocalDateTime.now());
     }
 
