@@ -9,3 +9,11 @@ The Web Service must expose CRUD operations to allow the management of this obje
 
 The Service must include the upload of an image for employee's profile.
 Must be management also the validation and any situations of error with an appropriate status code.
+
+## Install
+This project was developed with Java Spring Boot
+
+ 1. Download the project and clone it on your PC
+ 2. Create a DB
+ 3. Create a env.properties file equal as env.example and fill it with your datas.
+ 5. Open on your IDE
